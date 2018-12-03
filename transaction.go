@@ -74,13 +74,14 @@ func sendTransactions() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println("tx sent: ", signedTx.Hash().Hex())
+		//fmt.Println("tx sent: ", signedTx.Hash().Hex())
 		nonce=nonce+1
-		fmt.Println(nonce)
+		//fmt.Println(nonce)
+		//balance, _ :=client.BalanceAt(context.Background(), toAddress, nil)
+		//
+		//fmt.Println("Balance  :", balance)
 	}
-	balance, _ :=client.BalanceAt(context.Background(), toAddress, nil)
 
-	fmt.Println("Balance  :", balance)
 }
 
 
