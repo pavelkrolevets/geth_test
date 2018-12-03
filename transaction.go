@@ -86,5 +86,4 @@ func sendTransaction() {
 
 func main() {
 	sendTransaction()
-
 }
