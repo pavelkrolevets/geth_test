@@ -20,7 +20,7 @@ const (
 		)
 
 
-func sendTransaction() {
+func sendTransactions() {
 	//signedTxs := make(chan *types.Transaction,1)
 
 	client, err := ethclient.Dial(HTTP)
@@ -85,5 +85,5 @@ func sendTransaction() {
 
 
 func main() {
-	sendTransaction()
+	sendTransactions()
 }
