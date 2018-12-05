@@ -5,11 +5,11 @@ import (
 	"crypto/ecdsa"
 	"fmt"
 	"log"
-	"math/big"
-
 	"github.com/astra-x/go-ethereum/common"
 	"github.com/astra-x/go-ethereum/crypto"
 	"github.com/astra-x/go-ethereum/ethclient"
+	//"time"
+	"math/big"
 	"github.com/astra-x/go-ethereum/core/types"
 )
 
@@ -46,7 +46,7 @@ func sendTransactions() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	value := big.NewInt(1000)      // in wei
+	value := big.NewInt(10000)      // in wei
 	gasLimit := big.NewInt(21000) // in units
 	gasPrice, err := client.SuggestGasPrice(context.Background())
 	if err != nil {
@@ -55,7 +55,8 @@ func sendTransactions() {
 	toAddress := common.HexToAddress(address_to)
 	var data []byte
 	nonce, err := client.NonceAt(context.Background(), fromAddress, nil)
-	fmt.Println(nonce)
+	//fmt.Println(nonce)
+
 	for {
 
 		tx := types.NewTransaction(0, nonce, toAddress, value, gasLimit, gasPrice, data)
@@ -75,16 +76,19 @@ func sendTransactions() {
 			log.Fatal(err)
 		}
 		//fmt.Println("tx sent: ", signedTx.Hash().Hex())
-		nonce=nonce+1
+		nonce = nonce + 1
+		balance, err := client.BalanceAt(context.Background(), toAddress, nil)
+		fmt.Println("Balance  :", balance)
 		//fmt.Println(nonce)
-		//balance, _ :=client.BalanceAt(context.Background(), toAddress, nil)
-		//
-		//fmt.Println("Balance  :", balance)
+		}
 	}
-
-}
 
 
 func main() {
 	sendTransactions()
+	//tick := time.Tick(time.Microsecond)
+	//select {
+	//case <-tick:
+	//
+	//}
 }
