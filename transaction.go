@@ -55,8 +55,8 @@ func sendTransactions(client *ethclient.Client)  {
 
 	//Start iterating
 	//speed := time.Duration(time.Second/tps)
-	ticker:= time.NewTicker(10*time.Millisecond)
-	for i:=0;i<100000;i++ {
+	ticker:= time.NewTicker(time.Millisecond)
+	for {
 
 		tx := types.NewTransaction(0, nonce, toAddress, value, gasLimit, gasPrice, data)
 		chainID, err := client.NetworkID(context.Background())
