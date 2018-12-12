@@ -18,7 +18,7 @@ const (
 	HTTP = "http://127.0.0.1:8545"
 	address_to = "0xd08a05283ad35600ab448c08db31a7c3797c8319"
 	priv_key = "d81952d9449a63525e2ef643e1b4ef7be924ac5a37602f00677c9940fa20d4cf"
-	tps = 100
+	tps = 1000
 	)
 
 
@@ -55,7 +55,7 @@ func sendTransactions(client *ethclient.Client)  {
 
 	//Start iterating
 	//speed := time.Duration(time.Second/tps)
-	ticker:= time.NewTicker(time.Millisecond)
+	ticker:= time.NewTicker((1000/tps)*time.Millisecond)
 	for {
 
 		tx := types.NewTransaction(0, nonce, toAddress, value, gasLimit, gasPrice, data)
